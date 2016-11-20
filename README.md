@@ -1,15 +1,14 @@
 # elm-http-builder
 
-[![ICARE](https://icarebadge.com/ICARE-white.png)](https://icarebadge.com)
-[![Build Status](https://travis-ci.org/lukewestby/elm-http-builder.svg?branch=master)](https://travis-ci.org/lukewestby/elm-http-builder)
+[![Build Status](https://travis-ci.org/prikhi/elm-http-builder.svg?branch=master)](https://travis-ci.org/prikhi/elm-http-builder)
 
 Chainable functions for building HTTP requests and composable functions for handling responses.
 
 **Need help? Join the #http channel in the [Elm Slack](https://elmlang.herokuapp.com)!**
 
+This is an Elm 0.18 fork of lukewestby's elm-http-builder package that provides
+an API for specifying Responses as well as Requests.
 
-> Thanks to @fredcy, @rileylark, and @etaque for the original discussion of the
-  API
 
 ## Example
 
@@ -59,10 +58,3 @@ addItem item =
     |> withCredentials
     |> send (jsonReader itemsDecoder) stringReader
 ```
-
-## Contributing
-
- I'm happy to receive any feedback and ideas for about additional features. Any
-input and pull requests are very welcome and encouraged. If you'd like to help
-or have ideas, get in touch with me at @luke_dot_js on Twitter or @luke in the
-elmlang Slack!

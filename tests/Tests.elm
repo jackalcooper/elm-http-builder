@@ -7,12 +7,6 @@ import Http
 import HttpBuilder exposing (..)
 import Json.Decode as Decode
 import Json.Encode as Encode
-import Native.Polyfills
-
-
-polyfillsEnabled : Bool
-polyfillsEnabled =
-    Native.Polyfills.enabled
 
 
 toTuple : RequestBuilder -> ( Http.Request (Response String), Settings )
@@ -38,8 +32,7 @@ initialRequest =
 all : Test
 all =
     describe "All tests"
-        [ test "polyfills are set up" <| \() -> Expect.equal polyfillsEnabled True
-        , describe "Request Building"
+        [ describe "Request Building"
             [ test "should build request and settings with expected params" <|
                 \() ->
                     get "http://example.com"
