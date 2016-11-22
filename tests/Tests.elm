@@ -11,7 +11,7 @@ import Json.Encode as Encode
 
 toTuple : RequestBuilder -> ( Http.Request (Response String), Settings )
 toTuple builder =
-    ( toRequest builder stringReader, toSettings builder )
+    ( toRequest stringReader builder, toSettings builder )
 
 
 testDecoder : Decode.Decoder String

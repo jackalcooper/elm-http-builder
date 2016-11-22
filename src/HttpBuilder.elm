@@ -559,7 +559,7 @@ sendHelp :
     -> Request String
     -> Task (Error b) (Response a)
 sendHelp successReader errorReader internals settings request =
-    toRequest (RequestBuilder request settings internals) successReader
+    toRequest successReader (RequestBuilder request settings internals)
         |> Http.toTask
         |> Task.mapError promoteRawError
         |> Task.onError (parseError successReader errorReader internals)
@@ -573,8 +573,8 @@ appendCacheBusterToUrl request time =
 {-| Extract the Http.Request component of the builder, for introspection and
 testing
 -}
-toRequest : RequestBuilder -> BodyReader a -> Http.Request (Response a)
-toRequest builder reader =
+toRequest : BodyReader a -> RequestBuilder -> Http.Request (Response a)
+toRequest reader builder =
     toRequestRecord reader builder |> Http.request
 
 
