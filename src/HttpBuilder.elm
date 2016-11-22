@@ -23,6 +23,7 @@ module HttpBuilder
         , withCacheBuster
         , withZeroStatusAllowed
         , send
+        , attempt
         , BodyReader
         , stringReader
         , jsonReader
@@ -40,7 +41,7 @@ module HttpBuilder
 configuration than what is provided by `elm-http` out of the box.
 
 # Send a request
-@docs send
+@docs send, attempt
 
 # Start a request
 @docs RequestBuilder, url, get, post, put, patch, delete, options, trace, head
@@ -549,6 +550,13 @@ send successReader errorReader (RequestBuilder request settings internals) =
             |> Task.andThen (sendHelp successReader errorReader internals settings)
     else
         sendHelp successReader errorReader internals settings request
+
+
+{-| Similar to `send`, but returns a Command instead of a Task.
+-}
+attempt : (Result (Error b) (Response a) -> msg) -> BodyReader a -> BodyReader b -> RequestBuilder -> Cmd msg
+attempt msg successReader errorReader builder =
+    send successReader errorReader builder |> Task.attempt msg
 
 
 sendHelp :

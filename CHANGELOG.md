@@ -1,5 +1,9 @@
 # Change Log
 
+# v2.1.0
+
+* Add `attempt` function.
+
 # v2.0.0
 
 * Flip order of `toRequest` arguments.
